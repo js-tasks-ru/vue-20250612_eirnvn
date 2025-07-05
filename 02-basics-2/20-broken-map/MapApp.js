@@ -1,4 +1,4 @@
-import { defineComponent, ref, watchEffect } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 
 export default defineComponent({
   name: 'MapApp',
@@ -9,7 +9,9 @@ export default defineComponent({
     const x = ref(0)
     const y = ref(0)
 
-    const pinRef = ref(null)
+    const pinStyle = computed(() => {
+      return `left:${x.value}px; top:${y.value}px`
+    })
     /**
      * Обработчик клика по карте для установки координат метки
      * @param {MouseEvent} event
@@ -19,31 +21,10 @@ export default defineComponent({
       y.value = event.offsetY
     }
 
-    // Следим за X и Y для установки нового положения
-    // watch(
-    //   [x, y],
-    //   (newCoords, oldCoords) => {
-    //     // Находим метку и изменяем её положение
-    //     const map = document.querySelector('.pin')
-    //     map.style.left = `${newCoords[0]}px`
-    //     map.style.top = `${newCoords[1]}px`
-    //   },
-    //   { deep: true, imediate: true },
-    // )
-
-    watchEffect(() => {
-      // Находим метку и изменяем её положение
-      // const map = document.querySelector('.pin')
-      if (pinRef.value) {
-        pinRef.value.style.left = `${x.value}px`
-        pinRef.value.style.top = `${y.value}px`
-      }
-    })
-
     return {
       x,
       y,
-      pinRef,
+      pinStyle,
       handleClick,
     }
   },
@@ -51,7 +32,7 @@ export default defineComponent({
   template: `
       <div class="map" @click="handleClick">
         <img class="map-image" src="./map.png" alt="Map" draggable="false" />
-        <span ref="pinRef" class="pin">📍</span>
+        <span class="pin" :style="pinStyle">📍</span>
       </div>
     `,
 })
