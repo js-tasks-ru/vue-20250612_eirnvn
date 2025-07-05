@@ -34,11 +34,14 @@ export default defineComponent({
 
   setup() {
     const query = ref('')
-    const resultQuery = computed(() => emails)
+    const resultQuery = computed(() =>
+      emails.map(email => {
+        return { email, marked: query.value === '' ? false : email.includes(query.value) }
+      }),
+    )
 
     return {
       query,
-      emails,
       resultQuery,
     }
   },
@@ -49,11 +52,8 @@ export default defineComponent({
         <input v-model="query" type="search" aria-label="Search" />
       </div>
       <ul aria-label="Emails">
-        <li v-for="email in emails">
-          {{ email }}
-        </li>
-        <li class="marked">
-          Jayne_Kuhic@sydney.com
+        <li v-for="email in resultQuery" :class="{'marked': email.marked}">
+          {{ email.email }}
         </li>
       </ul>
     </div>
