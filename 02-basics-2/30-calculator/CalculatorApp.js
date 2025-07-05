@@ -15,7 +15,7 @@ export default defineComponent({
       divide: (a, b) => a / b,
     }
     const result = computed(() => {
-      return operators[operator.value](Number(operand1.value), Number(operand2.value))
+      return operators[operator.value](operand1.value, operand2.value)
     })
     return {
       operand1,
