@@ -27,16 +27,16 @@ export default defineComponent({
 
   template: `
     <div class="calculator">
-      <input type="number" :value="operand1" @input="operand1 = $event.target.value" aria-label="First operand" />
+      <input type="number" v-model="operand1" aria-label="First operand" />
 
       <div class="calculator__operators">
-        <label><input type="radio" @change="operator = $event.target.value" :checked="operator === 'sum'" name="operator" value="sum"/>➕</label>
-        <label><input type="radio" @change="operator = $event.target.value" :checked="operator === 'subtract'" name="operator" value="subtract"/>➖</label>
-        <label><input type="radio" @change="operator = $event.target.value" :checked="operator === 'multiply'" name="operator" value="multiply"/>✖</label>
-        <label><input type="radio" @change="operator = $event.target.value" :checked="operator === 'divide'" name="operator" value="divide"/>➗</label>
+        <label><input type="radio"  v-model="operator" name="operator" value="sum"/>➕</label>
+        <label><input type="radio"  v-model="operator" name="operator" value="subtract"/>➖</label>
+        <label><input type="radio"  v-model="operator" name="operator" value="multiply"/>✖</label>
+        <label><input type="radio"  v-model="operator" name="operator" value="divide"/>➗</label>
       </div>
 
-      <input type="number" :value="operand2" @input="operand2 = $event.target.value" aria-label="Second operand" />
+      <input type="number" v-model="operand2" aria-label="Second operand" />
 
       <div>=</div>
 
