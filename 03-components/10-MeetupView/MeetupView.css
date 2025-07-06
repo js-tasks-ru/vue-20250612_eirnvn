@@ -5,8 +5,8 @@
   margin-block-start: var(--spacing-large);
 }
 
-.meetup__content {
-}
+/* .meetup__content {
+} */
 
 .meetup__aside {
   display: flex;
@@ -20,7 +20,6 @@
   align-items: flex-start;
   gap: var(--spacing-smaller);
 }
-
 @media all and (min-width: 992px) {
   .meetup {
     flex-direction: row;
