@@ -3,4 +3,7 @@ import './MapApp.css'
 import { createApp } from 'vue'
 import MapApp from './MapApp.js'
 
-createApp(MapApp).mount('#app')
+// createApp(MapApp).mount('#app')
+const app = createApp(MapApp)
+const vm = app.mount('#app')
+window.vm = vm
